@@ -12,4 +12,13 @@ const register = createAsyncThunk('auth/register', async credentials => {
   }
 });
 
-export { register };
+const login = createAsyncThunk('auth/login', async credentials => {
+  try {
+    const { data } = await axios.post('/users/login', credentials);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export { register, login };
