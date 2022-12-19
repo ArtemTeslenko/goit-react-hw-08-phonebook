@@ -6,7 +6,7 @@ import {
 import { filterContacts } from 'redux/filterSlice';
 import { Wrapper } from './Filter.styled';
 
-function Filter() {
+export function Filter() {
   const dispatch = useDispatch();
 
   return (
@@ -19,5 +19,3 @@ function Filter() {
     </Wrapper>
   );
 }
-
-export default Filter;

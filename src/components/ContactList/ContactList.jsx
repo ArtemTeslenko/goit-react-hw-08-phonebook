@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
-import { fetchContacts, deleteContact } from 'redux/operations';
+import { fetchContacts, deleteContact } from 'redux/contactsOperations';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 import {
   ContactItem,
@@ -9,7 +9,7 @@ import {
   List,
 } from './ContactList.styled';
 
-export default function ContactList() {
+export function ContactList() {
   const dispatch = useDispatch();
   const items = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
@@ -26,11 +26,11 @@ export default function ContactList() {
       <List>
         {items.length > 0
           ? items.map(item => {
-              const { id, name, phone } = item;
+              const { id, name, number } = item;
               return (
                 <ContactItem key={id}>
                   <ContactItemWrapper>
-                    {name}: {phone}
+                    {name}: {number}
                     <DeleteBtn
                       type="button"
                       onClick={() => dispatch(deleteContact(id))}

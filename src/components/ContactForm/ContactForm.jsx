@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/selectors';
-import { addContact } from 'redux/operations';
+import { addContact } from 'redux/contactsOperations';
 import {
   FormInput,
   Form,
@@ -9,9 +9,9 @@ import {
   AddContactBtn,
 } from './ContactForm.styled';
 
-function ContactForm() {
+export function ContactForm() {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const items = useSelector(selectContacts);
   const dispatch = useDispatch();
 
@@ -21,14 +21,14 @@ function ContactForm() {
     if (items.length > 0 && items.find(item => item.name === name)) {
       alert('The contact is already in your phonebook.');
       setName('');
-      setPhone('');
+      setNumber('');
       return;
     }
 
-    dispatch(addContact({ name, phone }));
+    dispatch(addContact({ name, number }));
 
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -50,12 +50,10 @@ function ContactForm() {
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
-        value={phone}
-        onChange={e => setPhone(e.target.value)}
+        value={number}
+        onChange={e => setNumber(e.target.value)}
       />
       <AddContactBtn type="submit">Add contact</AddContactBtn>
     </Form>
   );
 }
-
-export default ContactForm;
