@@ -1,19 +1,27 @@
+import { UserMenu } from 'components/UserMenu';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/selectors';
 import { NavBox, NavItem } from './Navigation.styled';
+import { selectIsgettingCurrent } from 'redux/selectors';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isFetchingCurrentUser = useSelector(selectIsgettingCurrent);
 
   return (
     <NavBox>
-      {!isLoggedIn ? (
-        <>
-          <NavItem to={'register'}>Register</NavItem>
-          <NavItem to={'login'}>Log in</NavItem>
-        </>
-      ) : (
-        <NavItem to={'contacts'}>Contacts</NavItem>
+      <NavItem to={'contacts'}>Contacts</NavItem>
+      {!isFetchingCurrentUser && (
+        <div>
+          {isLoggedIn ? (
+            <UserMenu />
+          ) : (
+            <div>
+              <NavItem to={'register'}>Register</NavItem>
+              <NavItem to={'login'}>Log in</NavItem>
+            </div>
+          )}
+        </div>
       )}
     </NavBox>
   );

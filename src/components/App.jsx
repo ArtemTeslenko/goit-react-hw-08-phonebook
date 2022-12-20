@@ -4,8 +4,9 @@ import { useEffect } from 'react';
 import { Layout } from './Layout';
 import { Register } from '../pages/Register';
 import { Login } from 'pages/Login';
-import { Contacts } from 'pages/Contacts';
 import { getCurrentUser } from 'redux/authOperations';
+import { Contacts } from 'pages/Contacts';
+import { PrivateRoute, PublicRoute } from 'routes';
 
 function App() {
   const dispatch = useDispatch();
@@ -18,9 +19,30 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="contacts" element={<Contacts />} />
+          <Route
+            path="register"
+            element={
+              <PublicRoute restricted redirectTo="/contacts">
+                <Register />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute restricted redirectTo="/contacts">
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute redirectTo="/login">
+                <Contacts />
+              </PrivateRoute>
+            }
+          />
         </Route>
       </Routes>
     </>
