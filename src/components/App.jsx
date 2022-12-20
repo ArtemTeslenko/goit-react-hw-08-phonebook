@@ -1,10 +1,19 @@
 import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { Layout } from './Layout';
 import { Register } from '../pages/Register';
 import { Login } from 'pages/Login';
 import { Contacts } from 'pages/Contacts';
+import { getCurrentUser } from 'redux/authOperations';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
       <Routes>
