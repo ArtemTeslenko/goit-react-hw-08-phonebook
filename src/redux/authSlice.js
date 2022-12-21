@@ -6,6 +6,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isGettingCurrent: false,
+  error: null,
 };
 
 export const authSlice = createSlice({
@@ -16,11 +17,19 @@ export const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      state.error = null;
+    },
+    [register.rejected]: (state, action) => {
+      state.error = action.payload;
     },
     [login.fulfilled]: (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      state.error = null;
+    },
+    [login.rejected]: (state, action) => {
+      state.error = action.payload;
     },
     [logout.fulfilled]: state => {
       state.user = { name: null, email: null };
@@ -35,8 +44,9 @@ export const authSlice = createSlice({
       state.isLoggedIn = true;
       state.isGettingCurrent = false;
     },
-    [getCurrentUser.rejected]: state => {
+    [getCurrentUser.rejected]: (state, action) => {
       state.isGettingCurrent = false;
+      state.error = action.payload;
     },
   },
 });

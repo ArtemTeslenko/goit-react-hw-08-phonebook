@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Layout } from './Layout';
 import { Register } from '../pages/Register';
@@ -7,9 +7,11 @@ import { Login } from 'pages/Login';
 import { getCurrentUser } from 'redux/authOperations';
 import { Contacts } from 'pages/Contacts';
 import { PrivateRoute, PublicRoute } from 'routes';
+import { selectAuthError } from 'redux/selectors';
 
 function App() {
   const dispatch = useDispatch();
+  const error = useSelector(selectAuthError);
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -44,6 +46,7 @@ function App() {
             }
           />
         </Route>
+        <Route element={error && <p>{error}</p>} />
       </Routes>
     </>
   );

@@ -27,6 +27,8 @@ const selectIsLoggedIn = state => state.auth.isLoggedIn;
 
 const selectIsgettingCurrent = state => state.auth.isGettingCurrent;
 
+const selectAuthError = state => state.auth.error;
+
 export {
   selectPrimaryContacts,
   selectFilter,
@@ -36,4 +38,5 @@ export {
   selectUser,
   selectIsLoggedIn,
   selectIsgettingCurrent,
+  selectAuthError,
 };
