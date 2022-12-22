@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { Layout } from './Layout';
 import { Register } from '../pages/Register';
@@ -7,15 +7,24 @@ import { Login } from 'pages/Login';
 import { getCurrentUser } from 'redux/authOperations';
 import { Contacts } from 'pages/Contacts';
 import { PrivateRoute, PublicRoute } from 'routes';
-import { selectAuthError } from 'redux/selectors';
+import { useState } from 'react';
+import { renewError } from 'redux/authSlice';
 
 function App() {
+  const [currentPath, setCurrentPath] = useState(null);
   const dispatch = useDispatch();
-  const error = useSelector(selectAuthError);
 
   useEffect(() => {
     dispatch(getCurrentUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(renewError());
+  }, [currentPath, dispatch]);
+
+  const handleCurrentPath = path => {
+    setCurrentPath(path);
+  };
 
   return (
     <>
@@ -25,7 +34,7 @@ function App() {
             path="register"
             element={
               <PublicRoute restricted redirectTo="/contacts">
-                <Register />
+                <Register setPath={handleCurrentPath} />
               </PublicRoute>
             }
           />
@@ -33,7 +42,7 @@ function App() {
             path="login"
             element={
               <PublicRoute restricted redirectTo="/contacts">
-                <Login />
+                <Login setPath={handleCurrentPath} />
               </PublicRoute>
             }
           />
@@ -46,7 +55,6 @@ function App() {
             }
           />
         </Route>
-        <Route element={error && <p>{error}</p>} />
       </Routes>
     </>
   );

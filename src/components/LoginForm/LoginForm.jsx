@@ -1,5 +1,7 @@
 import { Formik, Form, useFormik } from 'formik';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { login } from 'redux/authOperations';
 import { selectAuthError } from 'redux/selectors';
 import * as yup from 'yup';
@@ -10,9 +12,14 @@ const schema = yup.object().shape({
   password: yup.string().min(6).required(),
 });
 
-export const LoginForm = () => {
+export const LoginForm = ({ setPath }) => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const error = useSelector(selectAuthError);
+
+  useEffect(() => {
+    setPath(pathname);
+  }, [pathname, setPath]);
 
   const formik = useFormik({
     initialValues: {
