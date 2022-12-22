@@ -1,3 +1,4 @@
+import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -5,10 +6,20 @@ import { Layout } from './Layout';
 import { Register } from '../pages/Register';
 import { Login } from 'pages/Login';
 import { getCurrentUser } from 'redux/authOperations';
-import { Contacts } from 'pages/Contacts';
 import { PrivateRoute, PublicRoute } from 'routes';
 import { useState } from 'react';
 import { renewError } from 'redux/authSlice';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+const Contacts = lazy(() =>
+  import('../pages/Contacts').then(module => ({
+    ...module,
+    default: module.Contacts,
+  }))
+);
 
 function App() {
   const [currentPath, setCurrentPath] = useState(null);
@@ -61,11 +72,3 @@ function App() {
 }
 
 export default App;
-
-/* <div className="mainContainer">
-  <h1 className="header">Phonebook</h1>
-  <ContactForm />
-  <h2 className="header">Contacts</h2>
-  <Filter />
-  <ContactList />
-</div>; */

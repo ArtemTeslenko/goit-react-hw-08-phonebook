@@ -10,8 +10,14 @@ export const NavBox = styled.nav`
 
 export const NavItem = styled(NavLink)`
   font-size: 24px;
+  text-decoration: none;
+  color: black;
 
   &:not(:last-child) {
     margin-right: 20px;
+  }
+
+  &.active {
+    color: red;
   }
 `;
