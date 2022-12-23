@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Label = styled.label`
   font-size: 16px;
-  color: #546e7a;
+  color: ${props => props.theme.color.mainColor};
   margin-bottom: 5px;
 `;
 
@@ -12,5 +12,5 @@ export const Input = styled.input`
   width: 400px;
   height: 30px;
   font-size: 16px;
-  color: #37474f;
+  color: ${props => props.theme.color.secondaryColor};
 `;

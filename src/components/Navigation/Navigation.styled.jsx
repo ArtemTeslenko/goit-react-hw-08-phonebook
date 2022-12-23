@@ -15,7 +15,7 @@ export const NavItem = styled(NavLink)`
   transition: all 350ms cubic-bezier(0.075, 0.82, 0.165, 1);
 
   &:hover {
-    transform: scale(1.1);
+    text-decoration: underline;
   }
 
   &:not(:last-child) {
