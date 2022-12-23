@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { selectIsgettingCurrent } from 'redux/selectors';
 import { LoginForm } from 'components/LoginForm';
-import { Section, Tytle } from './Login.styled';
+import { Section, Title } from '../Common.styled';
 
 export const Login = ({ setPath }) => {
   const isFetchingCurrentUser = useSelector(selectIsgettingCurrent);
@@ -9,7 +9,7 @@ export const Login = ({ setPath }) => {
   return (
     !isFetchingCurrentUser && (
       <Section>
-        <Tytle>Login yourself</Tytle>
+        <Title>Login yourself</Title>
         <LoginForm setPath={setPath} />
       </Section>
     )

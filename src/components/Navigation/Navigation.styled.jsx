@@ -18,6 +18,6 @@ export const NavItem = styled(NavLink)`
   }
 
   &.active {
-    color: red;
+    color: #e26060;
   }
 `;

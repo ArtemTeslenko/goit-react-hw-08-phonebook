@@ -1,4 +1,4 @@
-import { Section, Title } from './Register.styled';
+import { Section, Title } from '../Common.styled';
 import { RegisterForm } from '../../components/RegisterForm';
 
 export const Register = ({ setPath }) => {

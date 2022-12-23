@@ -1,12 +1,12 @@
 import { ContactForm } from 'components/ContactForm';
 import { ContactList } from 'components/ContactList';
 import { Filter } from 'components/Filter';
-import { Section, Tytle } from './Contacts.styled';
+import { Section, Title } from '../Common.styled';
 
 export function Contacts() {
   return (
     <Section>
-      <Tytle>Contacts</Tytle>
+      <Title>Add new contact</Title>
       <ContactForm />
       <Filter />
       <ContactList />
