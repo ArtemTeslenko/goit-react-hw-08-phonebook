@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { register } from 'redux/authOperations';
 import { selectAuthError } from 'redux/selectors';
 import * as yup from 'yup';
-import { Input } from './RegisterForm.styled';
+import { Button, Input, Label } from 'styles';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -38,7 +38,7 @@ export const RegisterForm = ({ setPath }) => {
     <>
       <Formik validationSchema={schema}>
         <Form onSubmit={formik.handleSubmit}>
-          <label htmlFor="name">Name</label>
+          <Label htmlFor="name">Name</Label>
           <Input
             type="text"
             id="name"
@@ -46,7 +46,7 @@ export const RegisterForm = ({ setPath }) => {
             onChange={formik.handleChange}
             value={formik.values.name}
           />
-          <label htmlFor="email">Email</label>
+          <Label htmlFor="email">Email</Label>
           <Input
             type="email"
             id="email"
@@ -54,7 +54,7 @@ export const RegisterForm = ({ setPath }) => {
             onChange={formik.handleChange}
             value={formik.values.email}
           />
-          <label htmlFor="pass">Password</label>
+          <Label htmlFor="pass">Password</Label>
           <Input
             type="password"
             id="pass"
@@ -62,7 +62,7 @@ export const RegisterForm = ({ setPath }) => {
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-          <button type="submit">Submit</button>
+          <Button type="submit">Submit</Button>
         </Form>
       </Formik>
       {error && <p>Something whent wrong, please try again</p>}

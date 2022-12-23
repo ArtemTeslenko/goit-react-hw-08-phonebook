@@ -31,13 +31,13 @@ export function ContactList() {
                 <ContactItem key={id}>
                   <ContactItemWrapper>
                     {name}: {number}
-                    <DeleteBtn
-                      type="button"
-                      onClick={() => dispatch(deleteContact(id))}
-                    >
-                      Delete
-                    </DeleteBtn>
                   </ContactItemWrapper>
+                  <DeleteBtn
+                    type="button"
+                    onClick={() => dispatch(deleteContact(id))}
+                  >
+                    Delete
+                  </DeleteBtn>
                 </ContactItem>
               );
             })

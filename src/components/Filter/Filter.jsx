@@ -1,18 +1,16 @@
 import { useDispatch } from 'react-redux';
-import {
-  FormLabel,
-  FormInput,
-} from 'components/ContactForm/ContactForm.styled';
 import { filterContacts } from 'redux/filterSlice';
 import { Wrapper } from './Filter.styled';
+import { Input, Label, Title } from 'styles';
 
 export function Filter() {
   const dispatch = useDispatch();
 
   return (
     <Wrapper>
-      <FormLabel>Find contats by name</FormLabel>
-      <FormInput
+      <Title>Filter</Title>
+      <Label>Find contats by name</Label>
+      <Input
         name="filter"
         onChange={e => dispatch(filterContacts(e.target.value.toLowerCase()))}
       />

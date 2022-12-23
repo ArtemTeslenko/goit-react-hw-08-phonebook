@@ -9,10 +9,6 @@ import { getCurrentUser } from 'redux/authOperations';
 import { PrivateRoute, PublicRoute } from 'routes';
 import { useState } from 'react';
 import { renewError } from 'redux/authSlice';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 
 const Contacts = lazy(() =>
   import('../pages/Contacts').then(module => ({
