@@ -2,9 +2,9 @@ import { Formik, Form, useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import * as yup from 'yup';
 import { login } from 'redux/authOperations';
 import { selectAuthError } from 'redux/selectors';
-import * as yup from 'yup';
 import { Button, Input, Label } from 'styles';
 
 const schema = yup.object().shape({
@@ -51,6 +51,7 @@ export const LoginForm = ({ setPath }) => {
             name="password"
             onChange={formik.handleChange}
             value={formik.values.password}
+            placeholder="more then 6 symbols"
           />
           <Button type="submit">Submit</Button>
         </Form>

@@ -1,13 +1,12 @@
-import { lazy } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { Layout } from './Layout';
 import { Register } from '../pages/Register';
 import { Login } from 'pages/Login';
+import { Home } from 'pages/Home';
 import { getCurrentUser } from 'redux/authOperations';
 import { PrivateRoute, PublicRoute } from 'routes';
-import { useState } from 'react';
 import { renewError } from 'redux/authSlice';
 
 const Contacts = lazy(() =>
@@ -37,6 +36,14 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
+          <Route
+            index
+            element={
+              <PublicRoute>
+                <Home />
+              </PublicRoute>
+            }
+          />
           <Route
             path="register"
             element={

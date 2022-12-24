@@ -10,7 +10,11 @@ export const Navigation = () => {
 
   return (
     <NavBox>
-      <NavItem to={'contacts'}>Contacts</NavItem>
+      <div>
+        <NavItem to={'/'}>Home</NavItem>
+        <NavItem to={'contacts'}>Contacts</NavItem>
+      </div>
+
       {!isFetchingCurrentUser && (
         <div>
           {isLoggedIn ? (

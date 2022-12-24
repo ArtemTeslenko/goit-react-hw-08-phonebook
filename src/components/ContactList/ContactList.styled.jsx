@@ -11,7 +11,7 @@ export const ContactItem = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #546e7a;
+  color: ${props => props.theme.color.mainColor};
   &:not(:last-child) {
     margin-bottom: 5px;
   }
